@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שיח חדש</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, h1, label, .form-control {
+            text-align: right;
+            direction: rtl;
+        }
+        .navbar-nav {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    </style>
+    <script>
+        // Save new topic to local storage
+        function saveTopic() {
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const topics = JSON.parse(localStorage.getItem('topics')) || [];
+
+            topics.push({ title, content, comments: [] });
+            localStorage.setItem('topics', JSON.stringify(topics));
+
+            // Redirect to forum page
+            window.location.href = '../Includes/forum.html';
+        }
+    </script>
+</head>
+<body>
+    <header class="bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="../index.html">
+                <img class="logo" src="../images/Job-Mil.jpg" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">דף הבית</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Includes/open_jobs.html">חיפוש עבודה</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Includes/add_job.html">מגייסים</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Includes/forum.html">פורום אנשי קבע</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">עלינו</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-4">
+        <h1 class="text-center">שיח חדש</h1>
+        <form onsubmit="saveTopic(); return false;">
+            <div class="form-group">
+                <label for="title">כותרת:</label>
+                <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">תוכן:</label>
+                <textarea class="form-control" id="content" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">שמור</button>
+        </form>
+    </main>
+    <footer class="bg-light text-center mt-4 p-3">
+        <div class="footer-text mb-2">קישורים חיצוניים</div>
+        <ul class="footer-items list-inline">
+            <li class="footer-item list-inline-item"><a class="footer-link" href="#">צור קשר</a></li>
+            <li class="footer-item list-inline-item"><a class="footer-link" href="#">אתר צה״ל</a></li>
+            <li class="footer-item list-inline-item"><a class="footer-link" href="#">מוקד תמיכה</a></li>
+            <li class="footer-item list-inline-item"><a class="footer-link" href="#">עמותות וארגונים נוספים</a></li>
+            <li class="footer-item list-inline-item"><a class="footer-link" href="#">מהן הזכויות שלי?</a></li>
+        </ul>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
